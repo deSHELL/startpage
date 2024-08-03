@@ -20,6 +20,6 @@ setInterval(() => {
 
 elemSearch.addEventListener("keydown", (event) => {
     if (event.key === 'Enter') {
-        window.location.href = `https://www.google.com/search?q=${elemSearch.value}`;
+        window.location.href = `https://www.duckduckgo.com/search?q=${elemSearch.value}`;
     }
 })
