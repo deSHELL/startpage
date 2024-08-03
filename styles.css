@@ -1,0 +1,81 @@
+:root {
+  --black0: #020203;
+  --black1: #0f1317;
+  --black2: #1c252c;
+  --white0: #e3e6eb;
+  --white1: #e4e6e7;
+  --white2: #b6beca;
+  --red: #e05f65;
+  --orange: #f1cf8a;
+  --green: #78dba9;
+  --cyan: #74bee9;
+  --blue: #70a5eb;
+  --purple: #c68aee;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Iosevka;
+}
+
+body {
+  min-height: 100vh;
+}
+
+img {
+    object-fit: cover;
+    height: 250px;
+    width: 250px;
+    border-radius: 1em;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5em;
+    height: 100%;
+    background-color: var(--black0);
+}
+
+.rightContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    background-color: var(--black1);
+    border: none;
+    border-radius: 0.2em;
+    font-size: 20px;
+    color: var(--white2);
+    padding: 1em;
+}
+
+input:focus {
+    outline: none;
+}
+
+.time {
+    display: flex;
+    flex-direction: row;
+    font-size: 30px;
+    color: var(--red);
+}
+
+#hour {
+    color: var(--white2);
+}
+
+#min {
+    color: var(--blue);
+}
+
+#apm {
+    color: var(--white1);
+}
