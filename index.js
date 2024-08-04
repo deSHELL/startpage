@@ -3,6 +3,10 @@ elemMin = document.getElementById("min");
 elemApm = document.getElementById("apm");
 elemSearch = document.getElementById("search");
 
+elemHour.innerHTML = localStorage['hour'];
+elemMin.innerHTML = localStorage['min'];
+elemApm.innerHTML = localStorage['apm'];
+
 setInterval(() => {
   let time = new Date();
   let hour = time.getHours();
@@ -16,10 +20,13 @@ setInterval(() => {
   elemHour.innerHTML = hour;
   elemMin.innerHTML = min;
   elemApm.innerHTML = apm;
+  localStorage['hour'] = hour;
+  localStorage['min'] = min;
+  localStorage['apm'] = apm;
 }, 1000);
 
 elemSearch.addEventListener("keydown", (event) => {
     if (event.key === 'Enter') {
-        window.location.href = `https://www.duckduckgo.com/search?q=${elemSearch.value}`;
+        window.location.href = `https://www.duckduckgo.com/?q=${elemSearch.value}`;
     }
 })

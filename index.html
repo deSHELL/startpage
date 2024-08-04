@@ -4,21 +4,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Startpage</title>
     <link rel="stylesheet" href="./styles.css" />
+    <!-- <link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css" /> -->
   </head>
   <body>
     <div class="mainContainer">
       <img src="./assets/valley.png" />
       <div class="rightContainer">
         <div class="time">
-          <p id="hour">00</p>
+          <p id="hour"></p>
           <p>:</p>
-          <p id="min">00</p>
+          <p id="min"></p>
           <p>&nbsp;</p>
-          <p id="apm">AM</p>
+          <p id="apm"></p>
         </div>
-        <input autofocus id="search" type="text" placeholder="search..." />
+        <input autofocus id="search" type="text" placeholder="Search..." />
+        <div class="fav-pages">
+          <label style="color: white;"></label>
+          <a href="https://github.com">Github</a>
+        </div>
+        
       </div>
     </div>
+    
     <script src="./index.js"></script>
   </body>
 </html>
