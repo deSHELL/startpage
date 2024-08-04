@@ -1,31 +1,247 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Startpage</title>
-    <link rel="stylesheet" href="./styles.css" />
-    <!-- <link rel="stylesheet" href="https://www.nerdfonts.com/assets/css/webfont.css" /> -->
-  </head>
-  <body>
-    <div class="mainContainer">
-      <img src="./assets/valley.png" />
-      <div class="rightContainer">
-        <div class="time">
-          <p id="hour"></p>
-          <p>:</p>
-          <p id="min"></p>
-          <p>&nbsp;</p>
-          <p id="apm"></p>
-        </div>
-        <input autofocus id="search" type="text" placeholder="Search..." />
-        <div class="fav-pages">
-          <label style="color: white;"></label>
-          <a href="https://github.com">Github</a>
-        </div>
-        
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Startpage</title>
+  <style>
+    :root {
+      /* Catppuccin Mocha palette */
+      --rosewater: #f5e0dc;
+      --flamingo: #f2cdcd;
+      --pink: #f5c2e7;
+      --mauve: #cba6f7;
+      --red: #f38ba8;
+      --maroon: #eba0ac;
+      --peach: #fab387;
+      --yellow: #f9e2af;
+      --green: #a6e3a1;
+      --teal: #94e2d5;
+      --sky: #89dceb;
+      --sapphire: #74c7ec;
+      --blue: #89b4fa;
+      --lavender: #b4befe;
+      --text: #cdd6f4;
+      --subtext1: #bac2de;
+      --subtext0: #a6adc8;
+      --overlay2: #9399b2;
+      --overlay1: #7f849c;
+      --overlay0: #6c7086;
+      --surface2: #585b70;
+      --surface1: #45475a;
+      --surface0: #313244;
+      --base: #1e1e2e;
+      --mantle: #181825;
+      --crust: #11111b;
+    }
+    * {
+      padding: 0;
+      margin: 0;
+      font-family: 'Iosevka', sans-serif;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      background-color: var(--base);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      color: var(--text);
+    }
+    #retry-button {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    
+    #retry-button:hover {
+      background-color: #0056b3;
+    }
+    img {
+      object-fit: cover;
+      border-radius: 1em;
+      box-shadow: 0 4px 6px var(--crust);
+    }
+    .typing-image {
+      position: absolute;
+      top: 20px;
+      width: 100%;
+      max-width: 1000px;
+      text-align: center;
+    }
+    .mainContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+      width: 100%;
+      max-width: 400px;
+      z-index: 1;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .time {
+      display: flex;
+      flex-direction: row;
+      font-size: 30px;
+      color: var(--mauve);
+      margin-bottom: 0.5em;
+    }
+    #hour { color: var(--blue); }
+    #min { color: var(--sky); }
+    #apm { color: var(--lavender); }
+    input {
+      background-color: var(--surface0);
+      border: 2px solid var(--surface1);
+      border-radius: 0.5em;
+      font-size: 20px;
+      color: var(--text);
+      padding: 0.7em 1em;
+      width: 100%;
+      margin-bottom: 1em;
+      transition: border-color 0.3s ease;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--lavender);
+    }
+    .oval-container {
+      background-color: var(--surface0);
+      border-radius: 25px;
+      padding: 1.5em 2em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8em;
+      width: 100%;
+      box-shadow: 0 4px 6px var(--crust);
+    }
+    .fav-pages {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8em;
+    }
+    .fav-pages a {
+      color: var(--text);
+      text-decoration: none;
+      padding: 0.5em 1em;
+      background-color: var(--surface1);
+      border-radius: 20px;
+      transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .fav-pages a:hover {
+      background-color: var(--mauve);
+      color: var(--base);
+      transform: translateY(-2px);
+    }
+    .fav-pages img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body>
+  <button id="retry-button" onclick="populateFavorites()">Retry Icons</button>
+  <!-- New image outside the mainContainer and centered -->
+  <div class="typing-image">
+    <img src="https://readme-typing-svg.demolab.com?font=Inconsolata&pause=5000&color=B4BEFE&width=435&lines=Hello+Deva!;Hello+coderrrrr!;Hello+turbomaster95!" alt="Typing SVG" style="height: auto; max-width: 100%;" />
+  </div>
+  <div class="mainContainer">
+    <img src="./assets/valley.png" alt="Valley" style="height: 250px; width: auto; max-width: 100%;" />
+    <div class="content">
+      <div class="time">
+        <p id="hour"></p>
+        <p>:</p>
+        <p id="min"></p>
+        <p>&nbsp;</p>
+        <p id="apm"></p>
+      </div>
+      <input autofocus id="search" type="text" placeholder="Search..." />
+      <div class="oval-container">
+        <div class="fav-pages" id="favPages"></div>
       </div>
     </div>
+  </div>
+  
+  <script>
+    const elemHour = document.getElementById("hour");
+    const elemMin = document.getElementById("min");
+    const elemApm = document.getElementById("apm");
+    const elemSearch = document.getElementById("search");
+    const elemFavPages = document.getElementById("favPages");
     
-    <script src="./index.js"></script>
-  </body>
+    // Favorite websites
+    const favorites = [
+      { name: "GitHub", url: "https://github.com" },
+      { name: "Google", url: "https://google.com" },
+      { name: "ChatGPT", url: "https://chat.openai.com" },
+      { name: "Stack Overflow", url: "https://stackoverflow.com" },
+      { name: "MDN Web Docs", url: "https://developer.mozilla.org" },
+      { name: "CodePen", url: "https://codepen.io" }
+    ];
+    
+    // Populate favorite websites with icons
+    function populateFavorites() {
+      elemFavPages.innerHTML = ''; // Clear previous content
+      
+      for (const fav of favorites) {
+        const link = document.createElement("a");
+        link.href = fav.url;
+        link.textContent = fav.name;
+        
+        const icon = document.createElement("img");
+        // Directly use the favicon URL
+        icon.src = `https://${new URL(fav.url).hostname}/favicon.ico`;
+        
+        link.prepend(icon);
+        
+        elemFavPages.appendChild(link);
+      }
+    }
+    
+    populateFavorites();
+    
+    // Update the time every second
+    function updateTime() {
+      const now = new Date();
+      let hour = now.getHours();
+      const min = now.getMinutes();
+      const apm = hour >= 12 ? "PM" : "AM";
+      hour = hour % 12 || 12; // Convert 24h to 12h format
+      elemHour.textContent = String(hour).padStart(2, "0");
+      elemMin.textContent = String(min).padStart(2, "0");
+      elemApm.textContent = apm;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+    
+    // Search functionality
+    elemSearch.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        const query = elemSearch.value.trim();
+        if (query) {
+          window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+        }
+      }
+    });
+  </script>
+</body>
 </html>
