@@ -113,6 +113,24 @@
       margin-bottom: 1em;
       transition: border-color 0.3s ease;
     }
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: var(--subtext1);
+    }
+    
+    .footer::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: var(--subtext1);
+      margin-bottom: 10px;
+    }
+    
+    
     input:focus {
       outline: none;
       border-color: var(--lavender);
@@ -157,6 +175,8 @@
       object-fit: contain;
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="/index.js"></script>
 </head>
 <body>
   <button id="retry-button" onclick="populateFavorites()">Retry Icons</button>
@@ -165,7 +185,7 @@
     <img src="https://readme-typing-svg.demolab.com?font=Inconsolata&pause=5000&color=B4BEFE&width=435&lines=Hello+Deva!;Hello+coderrrrr!;Hello+turbomaster95!" alt="Typing SVG" style="height: auto; max-width: 100%;" />
   </div>
   <div class="mainContainer">
-    <img src="./assets/valley.png" alt="Valley" style="height: 250px; width: auto; max-width: 100%;" />
+    <img src="" alt="" style="height: 250px; width: auto; max-width: 100%;" id="image"/>
     <div class="content">
       <div class="time">
         <p id="hour"></p>
@@ -180,6 +200,13 @@
       </div>
     </div>
   </div>
+  <footer class="footer">
+    Made by Deva!<br>
+    <a href="https://brandfetch.com/developers/logo-api" style="color: var(--subtext0)">Logos provided by Brandfetch</a><br>
+    <a href="https://readme-typing-svg.demolab.com/demo/" style="color: var(--subtext0)">Typing SVG provided by DenverCoder1</a><br>
+    <a href="https://imagecdn.app" style="color: var(--subtext0)">Image provided by ImageCDN</a>
+    
+  </footer>
   
   <script>
     const elemHour = document.getElementById("hour");
@@ -187,16 +214,23 @@
     const elemApm = document.getElementById("apm");
     const elemSearch = document.getElementById("search");
     const elemFavPages = document.getElementById("favPages");
+    const imagesearch = document.getElementById("image");
     
     // Favorite websites
     const favorites = [
-      { name: "GitHub", url: "https://github.com" },
-      { name: "Google", url: "https://google.com" },
-      { name: "ChatGPT", url: "https://chat.openai.com" },
-      { name: "Stack Overflow", url: "https://stackoverflow.com" },
-      { name: "MDN Web Docs", url: "https://developer.mozilla.org" },
-      { name: "CodePen", url: "https://codepen.io" }
+    { name: "Coderrrrr", url: "https://coderrrrr.site" },
+    { name: "GitHub", url: "https://github.com" },
+    { name: "Gmail", url: "https://mail.google.com/mail/u/1/" },
+    { name: "ChatGPT", url: "https://chat.openai.com" },
+    { name: "Stack Overflow", url: "https://stackoverflow.com" },
+    { name: "MDN Web Docs", url: "https://developer.mozilla.org" },
+    { name: "CodePen", url: "https://codepen.io" }
     ];
+    
+    // Get a random image from the imagecdn api to put as the image
+    function getImage() {
+      imagesearch.src = "https://random.imagecdn.app/400/250"
+    }
     
     // Populate favorite websites with icons
     function populateFavorites() {
@@ -209,7 +243,7 @@
         
         const icon = document.createElement("img");
         // Directly use the favicon URL
-        icon.src = `https://${new URL(fav.url).hostname}/favicon.ico`;
+        icon.src = `https://cdn.brandfetch.io/${new URL(fav.url).hostname}`;
         
         link.prepend(icon);
         
@@ -217,6 +251,7 @@
       }
     }
     
+    getImage();
     populateFavorites();
     
     // Update the time every second
@@ -238,7 +273,7 @@
       if (event.key === "Enter") {
         const query = elemSearch.value.trim();
         if (query) {
-          window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+          window.location.href = `https://duckduckgo.com/?q=${encodeURIComponent(query)}`;
         }
       }
     });
